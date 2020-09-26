@@ -1,24 +1,16 @@
-# words
+# English Dictionary with Vue CLI
 
-## Project setup
+![English Dictionary](/src/assets/images/english_images_1.png)
+![English Dictionary](/src/assets/images/english_images_2.png)
+
+## Project Setup
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and Hot-reloads for Development
+
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
