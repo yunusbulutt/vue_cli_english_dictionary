@@ -2,58 +2,63 @@
   <div id="contanier">
     <div class="row">
       <div class="col-md-8 offset-md-2 text-center">
-          <h3 class="mt-5">English Dictionary</h3>
-          <hr>
-          <div class="words-contanier">
-           <Word v-for="word in wordList" :word="word" :key="word.id"/>
+        <div class="words-contanier">
+          <div class="card" style="width: 56rem">
+            <div class="card-header"><h3>English Dictionary</h3></div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <h4>{{ word.english }}</h4>
+              </li>
+              <li class="list-group-item">
+                <h4>{{ word.turkish }}</h4>
+              </li>
+              <li class="list-group-item">
+                <button @click="nextWord" class="btn btn-primary btn-lg">
+                  Öğrendim
+                </button>
+              </li>
+            </ul>
           </div>
-          <hr>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
-import axios from "axios"
-import Word from "@/components/Word"
+import words from "@/assets/words";
 
 export default {
-  components : {
-    Word
-  },
+  components: {},
 
   data() {
     return {
-      wordList : [],
-      english : "",
-      turkish : ""
-    }
+      wordList: [],
+      english: "",
+      turkish: "",
+      wordIndex: Math.floor(Math.random() * words.wordList.length),
+    };
+  },
+  methods: {
+    nextWord() {
+      this.wordIndex = Math.floor(Math.random() * words.wordList.length);
     },
-    methods : {
+  },
 
+  computed: {
+    word() {
+      return this.wordList[this.wordIndex];
     },
+  },
 
-    created() {
-      axios.get("http://localhost:3000/wordList")
-      .then(response => {
-        for(let key in response.data){
-          let word= {
-            id : key,
-            english : response.data[key].english,
-            turkish : response.data[key].turkish
-          }
-            this.wordList.push(word)
-        }
-   
-      })
-      .catch()     
-    },
-    
-}
-
+  created() {
+    this.wordList = words.wordList;
+  },
+};
 </script>
 
 <style>
-
+.card {
+  margin-top: 30px;
+}
 </style>
